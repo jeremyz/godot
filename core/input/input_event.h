@@ -484,6 +484,7 @@ class InputEventGesture : public InputEventWithModifiers {
 	GDCLASS(InputEventGesture, InputEventWithModifiers);
 
 	Vector2 pos;
+	int touches;
 
 protected:
 	static void _bind_methods();
@@ -491,6 +492,8 @@ protected:
 public:
 	void set_position(const Vector2 &p_pos);
 	Vector2 get_position() const;
+	void set_touches(const int p_touches);
+	int get_touches() const;
 };
 
 class InputEventMagnifyGesture : public InputEventGesture {
@@ -525,6 +528,67 @@ public:
 	virtual String as_text() const override;
 
 	InputEventPanGesture() {}
+};
+
+class InputEventGesturePan : public InputEventGesture {
+	GDCLASS(InputEventGesturePan, InputEventGesture);
+	Vector2 relative;
+	Vector2 speed;
+
+protected:
+	static void _bind_methods();
+
+public:
+	void set_relative(const Vector2 &p_relative);
+	Vector2 get_relative() const;
+
+	Vector2 get_delta() const;
+
+	void set_speed(const Vector2 &p_speed);
+	Vector2 get_speed() const;
+
+	virtual Ref<InputEvent> xformed_by(const Transform2D &p_xform, const Vector2 &p_local_ofs = Vector2()) const;
+	virtual String as_text() const;
+
+	InputEventGesturePan();
+};
+
+class InputEventGesturePinch : public InputEventGesture {
+	GDCLASS(InputEventGesturePinch, InputEventGesture);
+	float distance;
+	float factor;
+
+protected:
+	static void _bind_methods();
+
+public:
+	void set_distance(float p_distance);
+	float get_distance() const;
+
+	void set_factor(float p_factor);
+	float get_factor() const;
+
+	virtual Ref<InputEvent> xformed_by(const Transform2D &p_xform, const Vector2 &p_local_ofs = Vector2()) const;
+	virtual String as_text() const;
+
+	InputEventGesturePinch();
+};
+
+class InputEventGestureTwist : public InputEventGesture {
+	GDCLASS(InputEventGestureTwist, InputEventGesture);
+	float rotation;
+
+protected:
+	static void _bind_methods();
+
+public:
+	void set_rotation(float p_rotation);
+	float get_rotation() const;
+
+	virtual Ref<InputEvent> xformed_by(const Transform2D &p_xform, const Vector2 &p_local_ofs = Vector2()) const;
+	virtual String as_text() const;
+
+	InputEventGestureTwist();
 };
 
 class InputEventMIDI : public InputEvent {
