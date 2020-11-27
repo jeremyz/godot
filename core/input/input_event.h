@@ -513,8 +513,8 @@ public:
 	void set_speed(const Vector2 &p_speed);
 	Vector2 get_speed() const;
 
-	virtual Ref<InputEvent> xformed_by(const Transform2D &p_xform, const Vector2 &p_local_ofs = Vector2()) const;
-	virtual String as_text() const;
+	virtual Ref<InputEvent> xformed_by(const Transform2D &p_xform, const Vector2 &p_local_ofs = Vector2()) const override;
+	virtual String as_text() const override;
 
 	InputEventGesturePan();
 };
@@ -534,8 +534,8 @@ public:
 	void set_factor(float p_factor);
 	float get_factor() const;
 
-	virtual Ref<InputEvent> xformed_by(const Transform2D &p_xform, const Vector2 &p_local_ofs = Vector2()) const;
-	virtual String as_text() const;
+	virtual Ref<InputEvent> xformed_by(const Transform2D &p_xform, const Vector2 &p_local_ofs = Vector2()) const override;
+	virtual String as_text() const override;
 
 	InputEventGesturePinch();
 };
@@ -551,8 +551,8 @@ public:
 	void set_rotation(float p_rotation);
 	float get_rotation() const;
 
-	virtual Ref<InputEvent> xformed_by(const Transform2D &p_xform, const Vector2 &p_local_ofs = Vector2()) const;
-	virtual String as_text() const;
+	virtual Ref<InputEvent> xformed_by(const Transform2D &p_xform, const Vector2 &p_local_ofs = Vector2()) const override;
+	virtual String as_text() const override;
 
 	InputEventGestureTwist();
 };
